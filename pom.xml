@@ -9,7 +9,6 @@
     <packaging>jar</packaging>
 
     <name>authentication</name>
-    <description></description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -59,7 +58,7 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.7</version>
         </dependency>
-        
+
     </dependencies>
 
     <build>
