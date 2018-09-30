@@ -102,7 +102,7 @@ public class SecurityConfig {
             String requestId = exchange.getRequest().getHeaders().get(RPCHttpHeaders.REQUEST_ID).get(0);
             return ServerResponse
                     .ok()
-                    .body(BodyInserters.fromObject(new AuthorizeResponse(requestId, RPCResponse.STATUS.OK,
+                    .body(BodyInserters.fromObject(new AuthorizeResponse(requestId, RPCResponse.STATUS.OK, null,
                             exception)))
                     //通过 configurer获取writer，来"智能"地完成消息转换
                     .flatMap((ServerResponse response) -> response.writeTo(exchange, new ServerResponse.Context() {
@@ -137,7 +137,8 @@ public class SecurityConfig {
             return ServerResponse
                     .ok()
                     //返回token
-                    .body(BodyInserters.fromObject(new AuthorizeResponse(requestId, RPCResponse.STATUS.OK, jwtToken)))
+                    .body(BodyInserters.fromObject(new AuthorizeResponse(requestId, RPCResponse.STATUS.OK,
+                            null, jwtToken)))
                     .flatMap((ServerResponse response) -> response.writeTo(exchange, new ServerResponse.Context() {
                         @Override
                         public List<HttpMessageWriter<?>> messageWriters() {
